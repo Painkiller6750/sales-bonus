@@ -5,7 +5,7 @@
  * @returns {number}
  */
 function calculateSimpleRevenue(purchase, _product) {
-    // @TODO: Расчет выручки от операции
+    // @TODO: Расчет выручки от операции c учётом скидки
     // purchase — это одна из записей в поле items из чека в data.purchase_records
     // _product — это продукт из коллекции data.products
     const { discount, quantity, sale_price } = purchase;
@@ -23,12 +23,15 @@ function calculateBonusByProfit(index, total, seller) {
     // @TODO: Расчет бонуса от позиции в рейтинге
     const { profit } = seller;
     if (index === 0) {
+        // top seller
         return profit * 0.15;
     } else if (index === 1 || index === 2) {
         return profit * 0.1;
+        // the last in the top
     } else if (index === total - 1) {
         return 0;
     } else {
+        // anyone but the last seller
         return profit * 0.05;
     }
 }
